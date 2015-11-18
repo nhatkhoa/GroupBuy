@@ -26,30 +26,27 @@
 <div class="blog-masthead">
     <div class="container">
         <nav class="nav blog-nav">
-            <a class="nav-link active" href="#">Home</a>
-            <a class="nav-link" href="#">New features</a>
-            <a class="nav-link" href="#">Press</a>
-            <a class="nav-link" href="#">New hires</a>
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link " href="/admin">Trang Chủ</a>
+            <a class="nav-link {{'active' }}" href="/admin/categories">Danh Mục</a>
+            <a class="nav-link" href="/admin/deals">Deal</a>
+            <a class="nav-link" href="/admin/partners">Nhà Cung Cấp</a>
+            <a class="nav-link" href="/admin/orders">Bán Hàng</a>
+            <a class="nav-link" href="/admin/customers">Khách Hàng</a>
         </nav>
     </div>
 </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
             @yield('content')
         </div>
-        <div class="col-md-3">
-            @section('sidebar')
-                This is the master sidebar.
-            @show
-        </div>
+
     </div>
 </div>
 
 <footer class="blog-footer">
-    <p>copy; Nhật Khoa</p>
+    <p>Copyright 2015 &copy; Khoa Hoàng</p>
 
     <p>
         <a href="#">Back to top</a>

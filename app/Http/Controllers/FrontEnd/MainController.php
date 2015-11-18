@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\FrontEnd;
 
+use App\Model\Category;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        //
+        return view('frontend.index.index', ['categories' => Category::where('parent_id', null)->get()]);
     }
 
     /**

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Category;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
@@ -17,8 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $categories->first()->parent();
-        return $categories->first()->parent()->name;
+        return view('admin.category.index', ['categories' => $categories]);
     }
 
     /**
@@ -32,7 +32,7 @@ class CategoryController extends Controller
     }
 
     private function getCategoryDropboxs(){
-        $categories = Category::all(['id','name']);
+        $categories = Category::where('parent_id', null)->orderBy('name')->get();
         $map = [];
         foreach ($categories as $category) {
             $map[$category->id] = $category->name;
@@ -48,9 +48,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        return Category::create(['name'=>$request->name,
-                                'parent_id' => $request->parent_id == '' ? null : $request->parent_id,
-                                'publish' => $request->publish == 'on' ? true : false]);
+        Category::create(['name'=>$request->name,
+        'parent_id' => $request->parent_id == '' ? null : $request->parent_id,
+        'publish' => $request->publish == 'on' ? true : false]);
+        return redirect('/admin/categories');
 
     }
 
@@ -73,7 +74,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.category.edit', ['categories' => $this->getCategoryDropboxs(), 'category' => Category::find($id)]);
     }
 
     /**
@@ -85,7 +86,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->name = $request->name;
+        $category->parent_id = $request->parent_id;
+        $category->publish = $request->publish == 'on' ? true : false;
+        Category::updateOrCreate($category);
+        return redirect('/admin/categories');
     }
 
     /**
@@ -96,6 +102,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::where('id', $id)->delete();
+        return redirect('/admin/categories');
     }
 }

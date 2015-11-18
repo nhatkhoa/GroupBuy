@@ -7964,7 +7964,7 @@ namespace {
     class Redirect extends \Illuminate\Support\Facades\Redirect{
         
         /**
-         * Create a new redirect response to the "home" route.
+         * Create a new redirect response to the "index" route.
          *
          * @param int $status
          * @return \Illuminate\Http\RedirectResponse 

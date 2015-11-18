@@ -1,13 +1,4 @@
 @extends('admin')
-@section('sidebar')
-
-
-    <div class="list-group">
-        <a href="#" class="list-group-item">Quay Lại Danh Sách</a>
-        <a href="#" class="list-group-item">Tạo mới Danh Mục</a>
-
-    </div>
-@stop
 @section('content')
 
     {!! Form::open(['url' => '/admin/categories', 'class' => 'form-control container']) !!}

@@ -20,10 +20,11 @@ class Category extends Migration
             $table->string('name')->default('NoName');
             $table->integer('parent_id')->unsigned()->nullable();
             $table->boolean('publish')->default(false);
+            $table->softDeletes();
         });
 
         Schema::table('categories', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('categories');
+            $table->foreign('parent_id')->references('id')->on('categories')->delete('cascade');
         });
     }
 
