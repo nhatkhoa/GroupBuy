@@ -11,9 +11,20 @@
 |
 */
 
-use App\Repository\CategoryRepositories;
+use App\Model\Category;
+
 Route::group(['namespace' => 'FrontEnd'], function(){
-   Route::resource('/', 'MainController');
+
+    Route::resource('/', 'MainController');
+    Route::get('/danh-muc/{id}', 'ProductController@deals');
+
+});
+
+Route::group(['prefix' => 'api', 'namespace' => 'Api'], function(){
+    Route::get('/categories', function(){
+        $categories = Category::where('parent_id', null)->get();
+       return $categories;
+    });
 });
 
 Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
