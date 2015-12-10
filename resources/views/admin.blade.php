@@ -11,56 +11,64 @@
 
     <title>Blog Template for Bootstrap</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/css/materialize.min.css" rel="stylesheet">
+    <style>
 
-    <!-- Custom styles for this template -->
-    <link href="/blog.css" rel="stylesheet">
+    </style>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+
 </head>
 
 <body>
+<?php
+    function getActiveLink($name){
+        $current = Route::getCurrentRoute()->getPath();
+        if($name == $current)
+            echo 'active';
+        echo '';
+    }
+?>
 
-<div class="blog-masthead">
-    <div class="container">
-        <nav class="nav blog-nav">
-            <a class="nav-link " href="/admin">Trang Chủ</a>
-            <a class="nav-link {{'active' }}" href="/admin/categories">Danh Mục</a>
-            <a class="nav-link" href="/admin/deals">Deal</a>
-            <a class="nav-link" href="/admin/partners">Nhà Cung Cấp</a>
-            <a class="nav-link" href="/admin/orders">Bán Hàng</a>
-            <a class="nav-link" href="/admin/customers">Khách Hàng</a>
-        </nav>
+<nav>
+    <div class="nav-wrapper container">
+        <a href="#" class="brand-logo">Logo</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/admin">Trang Chủ</a></li>
+            <li><a href="/admin/categories">Danh Mục</a></li>
+            <li><a href="/admin/deals">Deal</a></li>
+            <li><a href="/admin/partners">Nhà Cung Cấp</a></li>
+            <li><a href="/admin/orders">Bán Hàng</a></li>
+            <li><a href="/admin/customers">Khách Hàng</a></li>
+        </ul>
     </div>
-</div>
+</nav>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
-            @yield('content')
+        <div class="section">
+            @yield('heading')
         </div>
-
+        <div class="divider"></div>
+    </div>
+    <div class="row">
+        @yield('content')
     </div>
 </div>
 
-<footer class="blog-footer">
-    <p>Copyright 2015 &copy; Khoa Hoàng</p>
 
-    <p>
-        <a href="#">Back to top</a>
-    </p>
-</footer>
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="/assets/js/vendor/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="/js/bootstrap.min.js"></script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('select').material_select();
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year
+            format: 'yyyy-mm-dd 23:59:59'
+        });
+    });
+</script>
 </body>
 </html>

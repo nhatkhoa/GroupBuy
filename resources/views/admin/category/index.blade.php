@@ -29,6 +29,10 @@
                         <a href="/admin/categories/{{$category->id}}/edit" class="btn btn-primary btn-sm">Chỉnh Sửa</a>
                         |&nbsp;
                     </div>
+                    <div class="pull-right">
+                        <a href="/admin/categories/{{$category->id}}/edit" class="btn btn-primary btn-sm">Chỉnh Sửa</a>
+                        |&nbsp;
+                    </div>
 
 
                 </td>

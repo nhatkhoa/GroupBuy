@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\Partner;
 use App\Model\Deal;
+use App\Model\Category;
+
 
 class DealController extends Controller
 {
@@ -18,7 +20,8 @@ class DealController extends Controller
      */
     public function index()
     {
-        return view('admin.deal.index');
+        return view('admin.deal.index')
+            ->with("deals", Deal::all()->forPage(0,20));
     }
 
     /**
@@ -28,14 +31,25 @@ class DealController extends Controller
      */
     public function create()
     {
-        return view('admin.deal.create', ['partners' => $this->getPartnerDropboxs()]);
+        return view('admin.deal.create')
+            ->with('partners', $this->getDropboxOfPartners())
+            ->with('categories', $this->getDropboxOfCategories());
     }
 
-    private function getPartnerDropboxs(){
+    private function getDropboxOfPartners(){
         $partners = Partner::all();
         $map = [];
         foreach ($partners as $partner) {
             $map[$partner->id] = $partner->company_name;
+        }
+        return $map;
+    }
+
+    private function getDropboxOfCategories(){
+        $categories = Category::all();
+        $map = [];
+        foreach ($categories as $category) {
+            $map[$category->id] = $category->name;
         }
         return $map;
     }
@@ -48,7 +62,8 @@ class DealController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Deal::create($request->all());
+        return redirect("/admin/deals");
     }
 
     /**
@@ -93,6 +108,7 @@ class DealController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Deal::destroy($id);
+        return redirect('/admin/deals');
     }
 }

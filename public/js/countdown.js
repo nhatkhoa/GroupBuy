@@ -328,11 +328,11 @@
 		/**
 		 * Counter HTML to be passed back to the element
 		 */
-		var counter_years   = '<div class="years"><span class="count">' + timerObject.years + '</span><span class="title">Years</span></div>';
-		var counter_days    = '<div class="days"><span class="count">' + timerObject.days + '</span><span class="title">Days</span></div>';
-		var counter_hours   = '<div class="hours"><span class="count">' + timerObject.hours + '</span><span class="title">Hours</span></div>';
-		var counter_minutes = '<div class="minutes"><span class="count">' + timerObject.minutes + '</span><span class="title">Minutes</span></div>';
-		var counter_seconds = '<div class="seconds"><span class="count">' + timerObject.seconds + '</span><span class="title">Seconds</span></div>';
+		var counter_years   = '<div class="years"><span class="count">' + timerObject.years + '</span><span class="title">Năm</span></div>';
+		var counter_days    = '<div class="days"><span class="count">' + timerObject.days + '</span><span class="title">Ngày</span></div>';
+		var counter_hours   = '<div class="hours"><span class="count">' + timerObject.hours + '</span><span class="title">Giờ</span></div>';
+		var counter_minutes = '<div class="minutes"><span class="count">' + timerObject.minutes + '</span><span class="title">Phút</span></div>';
+		var counter_seconds = '<div class="seconds"><span class="count">' + timerObject.seconds + '</span><span class="title">Giây</span></div>';
 
 		/**
 		 * Setup string inclusions

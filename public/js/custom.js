@@ -7,6 +7,17 @@ var TWITTER_USERNAME = 'envato',
 
 // Countdown
 $(function() {
+    var regionalVar = {
+        days: 'Ngày',
+        day: 'Ngày',
+        years: 'Năm',
+        year: 'Năm',
+        hours: 'Giờ',
+        hour: 'Giờ',
+        minutes: 'Phút',
+        minute: 'Phút'
+    };
+
     $('.countdown').each(function() {
         var count = $(this);
         $(this).countdown({
@@ -18,7 +29,8 @@ $(function() {
                 $(count).countdown({
                     unixFormat: true
                 });
-            }
+            },
+            regional: regionalVar
         });
     });
 });

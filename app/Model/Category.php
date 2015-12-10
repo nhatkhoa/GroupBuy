@@ -9,7 +9,7 @@ class Category extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'parent_id', 'publish'];
+    protected $fillable = ['name', 'parent_id', 'publish', 'icon'];
 
     protected $dates = ['deleted_at'];
 
@@ -27,6 +27,9 @@ class Category extends Model
 
     public function getChildsAttribute(){
         return $this->childs()->get();
+    }
+    public function deals(){
+        return $this->hasMany('App\Model\Deal');
     }
 
 }

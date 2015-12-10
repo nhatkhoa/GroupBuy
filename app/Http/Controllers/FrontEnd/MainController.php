@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\FrontEnd;
+namespace App\Http\Controllers\Frontend;
 
 use App\Model\Category;
+use App\Model\Deal;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -17,72 +19,30 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view('frontend.index.index', ['categories' => Category::where('parent_id', null)->get()]);
+        return view('frontend.index.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function listProductByCategory(Request $request, $category_id){
+        $deals = Deal::where('category_id', $category_id)
+            ->orderBy('created_at');
+        $items = $deals;
+        if($request->request->get('sort') == 'price'){
+            $item = $deals->orderBy('deal_price');
+        }
+        if($request->request->get('sort') == 'name'){
+            $item = $deals->orderBy('name');
+        }
+        if($request->request->get('sort') == 'date'){
+            $item = $deals->orderBy('time_expired');
+        }
+        return view('frontend.category.category')
+            ->with('products', $items->paginate(1));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function productByCategory($product_id){
+        $deal = Deal::where('id', $product_id)->get()->first();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return view('frontend.product.product')
+            ->with('deal', $deal);
     }
 }

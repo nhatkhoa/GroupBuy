@@ -3300,7 +3300,7 @@ span.count {
 }
 .flexnav li ul {
   z-index: 1;
-  width: 150px;
+  width: 250px;
   position: absolute;
   display: none;
 }

@@ -4,75 +4,100 @@
 
     {!! Form::open(['url'=> '/admin/deals']) !!}
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary pull-right">Tạo mới</button>
-            </div>
+    <div class="row">
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <button class="btn-floating btn-large green">
+                <i class="large material-icons">done</i>
+            </button>
+            <a href="/admin/deals" class="btn-floating btn-large red">
+                <i class="large material-icons">replay</i>
+            </a>
         </div>
-        <br/>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Thông tin
-                    </div>
-                    <div class="card-block">
-                        <fieldset class="form-group">
-                            <label for="name">Tên Deal</label>
-                            <input name="name" type="text" class="form-control" placeholder="Tên của sản phẩm"/>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="list_price">Giá gốc</label>
-                            <input name="list_price" type="number" class="form-control" placeholder="Giá gốc của sản phẩm"/>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="deal_price">Giá đã giảm</label>
-                            <input name="deal_price" type="number" class="form-control" placeholder="Nhập giá sau khi giảm"/>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="deal_amount">Số lượng yêu cầu</label>
-                            <input name="deal_amount" type="number" class="form-control" placeholder="Số lượng cần đạt được"/>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="time_expired">Thời gian kết thúc</label>
-                            {!! Form::datetimeLocal('time_expired', \Carbon\Carbon::now(), ['class'=> 'form-control']) !!}
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="location">Địa điểm</label>
-                            <input name="location" type="text" class="form-control" placeholder="Nhập địa điểm của deal"/>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="partner_id">Nhà cung cấp</label>
-                            {!! Form::select('partner_id', $partners , null, ['placeholder' => 'Chọn nhà cung cấp...', 'class' => 'form-control']) !!}
-                        </fieldset>
 
+        <div class="row">
+            <div class="col s6">
+                <div class="card ">
+                    <div class="card-content">
+                        <div class="card-title">
+                            THÔNG TIN CƠ BẢN
+                        </div>
+                        <div class="row">
+                            <div class="input-field">
+                                <input name="name" type="text" class="validate" required>
+                                <label for="name">Tiêu đề deal</label>
+                            </div>
+                            <div class="input-field col s12">
+                                {!! Form::select('partner_id', $partners , null, ['placeholder' => 'Chọn nhà cung cấp']) !!}
+                                <label for="partner_id">Nhà cung cấp</label>
+                            </div>
+                            <div class="input-field col s12">
+                                {!! Form::select('category_id', $categories , null, ['placeholder' => 'Chọn danh mục']) !!}
+                                <label for="partner_id">Thuộc danh mục</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <textarea name="noted" class="materialize-textarea" length="120"></textarea>
+                                <label for="partner_id">Thông tin lưu ý</label>
+                            </div>
+
+                        </div>
                     </div>
+
+                </div>
+            </div>
+            <div class="col s6">
+                <div class="card ">
+                    <div class="card-content">
+                        <div class="card-title">
+                            GIAO DỊCH
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input name="list_price" type="number" class="validate" required>
+                                <label for="list_price">Giá gốc</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input name="deal_price" type="number" class="validate" pattern="" required>
+                                <label for="deal_price">Giá mua chung</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input name="location" type="text" class="validate">
+                                <label for="location">Địa điểm </label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input required name="time_expired" type="date" class="datepicker" placeholder="Chọn thời gian hết hạn (24:00 kết thúc)">
+                                <label for="time_expired">Thời hạn mua chung</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input name="stock" type="number" class="validate" required>
+                                <label for="stock">Số lượng sẵn có</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <input name="deal_amount" type="number" class="validate" required>
+                                <label for="deal_amount">Số lượng yêu cầu</label>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Hình ảnh
-                    </div>
-                    <div class="card-block">
-
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col s12">
                 <div class="card">
-                    <div class="card-header">
-                        Mô tả sản phẩm
-                    </div>
-                    <div class="card-block">
-                        <textarea name="editor1" id="editor1" rows="10" cols="110">
+                   <div class="card-content">
+                       <div class="card-title">
+                           Mô tả sản phẩm
+                       </div>
+                       <div class="row">
+                           <div class="col s12">
+                        <textarea name="description" id="editor1" rows="10" cols="110">
                             Thông tin sản nó phẩm...
                         </textarea>
-                    </div>
+                           </div>
+                       </div>
+                   </div>
                 </div>
             </div>
         </div>

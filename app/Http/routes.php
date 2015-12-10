@@ -12,19 +12,25 @@
 */
 
 use App\Model\Category;
+use App\Model\Deal;
+use App\Model\Partner;
 
-Route::group(['namespace' => 'FrontEnd'], function(){
-
-    Route::resource('/', 'MainController');
-    Route::get('/danh-muc/{id}', 'ProductController@deals');
-
-});
-
-Route::group(['prefix' => 'api', 'namespace' => 'Api'], function(){
+Route::group(['prefix' => 'api', 'namespace' => 'Api', 'middleware' => 'cors'], function(){
     Route::get('/categories', function(){
         $categories = Category::where('parent_id', null)->get();
        return $categories;
     });
+
+    Route::get('/categories/{id}', function($id){
+        return Deal::where('partner_id', $id)->get();
+    });
+});
+
+Route::group(['namespace' => 'Frontend'], function(){
+    Route::get('/', 'MainController@index');
+    Route::get('/danh-muc/{category_id}', 'MainController@listProductByCategory');
+    Route::get('/san-pham/{deal_id}', 'MainController@productByCategory');
+
 });
 
 Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
