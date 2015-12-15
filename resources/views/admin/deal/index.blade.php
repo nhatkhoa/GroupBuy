@@ -43,9 +43,9 @@
                     <button class="btn btn-floating"><i class="material-icons ">edit</i></button>
                 </td>
                 <td>
-                    {!! Form::open(['method' => 'DELETE', 'url' => '/admin/deals/'.$deal->id]) !!}
-                    <button type="submit" class="btn btn-floating red"><i class="material-icons ">cancel</i></button>
-                    {!! Form::close() !!}
+                    <form action="/admin/deals/{!! $deal->id !!}" method="DELETE">
+                        <button type="submit" class="btn btn-floating red"><i class="material-icons ">cancel</i></button>
+                    </form>
                 </td>
 
             </tr>

@@ -22,9 +22,9 @@
                 <td>{{$category->parent_id == null ? 'Chính' : $category->parent()->first()->name}}</td>
                 <td>
                     <div class="pull-right">
-                        {!! Form::open(['method' => 'DELETE', 'url' => '/admin/categories/'.$category->id]) !!}
-                        <button type="submit" class="btn btn-floating red"><i class="material-icons">cancel</i></button>
-                        {!! Form::close() !!}
+                        <form action="/admin/categories/{!! $category->id !!}" method="DELETE">
+                            <button type="submit" class="btn btn-floating red"><i class="material-icons">cancel</i></button>
+                        </form>
                     </div>
 
                     <div class="pull-right">
