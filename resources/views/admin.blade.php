@@ -11,7 +11,7 @@
 
     <title>Blog Template for Bootstrap</title>
 
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/css/materialize.min.css" rel="stylesheet">
     <link href="/css/admin.css" rel="stylesheet">
 
