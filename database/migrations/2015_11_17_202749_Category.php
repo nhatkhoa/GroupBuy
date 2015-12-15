@@ -12,11 +12,11 @@ class Category extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('categories');
 
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('icon');
             $table->string('name')->default('NoName');
             $table->integer('parent_id')->unsigned()->nullable();
             $table->boolean('publish')->default(false);

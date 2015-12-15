@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Category extends Migration
+class DeadImage extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,11 @@ class Category extends Migration
      */
     public function up()
     {
-
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('icon');
+        Schema::create('deal_images', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('deal_id');
+            $table->foreign('deal_id')->references('id')->on('deals');
         });
-
-
     }
 
     /**
@@ -27,7 +26,7 @@ class Category extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
+        Schema::table('deal_images', function (Blueprint $table) {
             //
         });
     }

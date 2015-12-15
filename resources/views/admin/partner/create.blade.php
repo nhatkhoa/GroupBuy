@@ -1,38 +1,48 @@
 @extends('admin')
 
+@section('heading')
+    <h3>Thêm Đối Tác Mới</h3>
+    @stop
+
 @section('content')
 
-    {!! Form::open(['url' => '/admin/categories', 'class' => 'form-control container']) !!}
-    <p>
-        {!! Form::label('name', 'Tên danh mục')!!}
-        {!! Form::text('name', null, ['class' => 'form-control']) !!}
-    </p>
-    <div class="row">
-        <p class="col-sm-6">
-            {!! Form::label('parent_id','Thuộc nhánh') !!}
-            {!! Form::select('parent_id', $categories , null, ['placeholder' => 'Chọn nhánh cha...', 'class' => 'form-control']) !!}
-        </p>
+    {!! Form::open(['url' => '/admin/partners', 'class' => 'card']) !!}
+    <div class="card-content">
+        <div class="row">
+            <div class="input-field col s6">
+                <input type="text" name="company_name"/>
+                <label for="company_name">Tên Đối Tác</label>
+            </div>
+            <div class="input-field col s6">
+                <input type="text" name="email"/>
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="text" name="address"/>
+                <label for="address">Địa Chỉ</label>
+            </div>
+            <div class="input-field col s12">
+                <input type="text" name="phone_number"/>
+                <label for="phone_number">Điện Thoại</label>
+            </div>
+            <div class="input-field col s12">
+                <textarea name="description" class="materialize-textarea"></textarea>
+                <label for="phone_number">Giới Thiệu</label>
+            </div>
 
-        <p class="col-sm-6">
-        {!! Form::label('publish','Trạng Thái') !!}
-        <label class="btn-group" data-toggle="buttons">
-            <label class="btn btn-success-outline">
-                <input type="checkbox" name="publish" autocomplete="off"> Kích hoạt danh mục
-            </label>
+        </div>
 
-        </label>
-        </p>
+        <div class="divider"></div>
 
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="waves-effect waves-light btn green">
+                    <i class="material-icons left">check</i>
+                    Thêm Đối Tác
+                </button>
+            </div>
+        </div>
     </div>
-    <p class="row">
-    <div class="col-sm-6">
-        {!! Form::button('Hủy bỏ', ['class' => 'btn btn-default btn-block']) !!}
-    </div>
-    <div class="col-sm-6">
-        {!! Form::submit('Thêm mới', ['class' => 'btn btn-primary btn-block']) !!}
-    </div>
 
-
-    </p>
     {!! Form::close() !!}
 @stop

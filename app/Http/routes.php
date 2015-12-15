@@ -30,6 +30,7 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::get('/', 'MainController@index');
     Route::get('/danh-muc/{category_id}', 'MainController@listProductByCategory');
     Route::get('/san-pham/{deal_id}', 'MainController@productByCategory');
+    Route::post('/cart', 'MainController@postCard');
 
 });
 
@@ -37,4 +38,11 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
     Route::resource('categories','CategoryController');
     Route::resource('deals','DealController');
     Route::resource('partners','PartnerController');
+
+    Route::get('/deals/{deal_id}/images', 'ImageController@index');
 });
+
+Route::post('auth/login', 'Auth\AuthController@loginAjax');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+Route::post('auth/register', 'Auth\AuthController@postRegister');

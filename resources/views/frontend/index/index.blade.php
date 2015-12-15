@@ -1,7 +1,7 @@
 @extends('frontend')
 
 @section('top-area')
- @include('frontend.index.top-area')
+
 @stop
 
 @section('content')
@@ -15,6 +15,7 @@
         </div>
     </div>
     <div class="gap gap-small"></div>
+    <!--
     <h1 class="mb20">New Deals <small><a href="#">View All</a></small></h1>
     <div class="row row-wrap">
         <a class="col-md-4" href="#">
@@ -245,5 +246,7 @@
         </a>
     </div>
     <div class="gap"></div>
+
+    -->
 
 @stop

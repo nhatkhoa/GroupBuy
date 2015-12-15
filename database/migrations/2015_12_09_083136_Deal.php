@@ -23,6 +23,7 @@ class Deal extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->timestamp('time_expired');
+            $table->longText('short_description');
             $table->longText('description');
             $table->unsignedInteger('partner_id');
             $table->string('location');

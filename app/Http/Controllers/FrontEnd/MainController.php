@@ -36,7 +36,7 @@ class MainController extends Controller
             $item = $deals->orderBy('time_expired');
         }
         return view('frontend.category.category')
-            ->with('products', $items->paginate(1));
+            ->with('products', $items->paginate(10));
     }
 
     public function productByCategory($product_id){
@@ -44,5 +44,9 @@ class MainController extends Controller
 
         return view('frontend.product.product')
             ->with('deal', $deal);
+    }
+
+    public function postCart(Request $request){
+        return response()->json(['test' => 'ok']);
     }
 }

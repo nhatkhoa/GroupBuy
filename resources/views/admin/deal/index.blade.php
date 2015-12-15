@@ -30,21 +30,21 @@
         @foreach($deals as $deal)
             <tr>
                 <th scope="row">{{$deal->id}}</th>
-                <td>{{$deal->name}}</td>
+                <td >{{$deal->name}}</td>
                 <td>{{$deal->category()->get()->first() != null ? $deal->category()->get()->first()->name : 'Không có'}}</td>
                 <td>{{$deal->time_expired->format('d/m/Y')}}</td>
                 <td>{{'0/'.$deal->deal_amount}}</td>
                 <td>{{$deal->stock}}</td>
                 <td>{{number_format($deal->list_price, 3, '.', '.')}} VNĐ</td>
                 <td>
-                    <button type="submit" class="btn green"><i class="material-icons ">image</i></button>
+                    <a href="/admin/deals/{!! $deal->id !!}/images" type="submit" class="btn btn-floating green"><i class="material-icons ">image</i></a>
                 </td>
                 <td>
-                    <button class="btn"><i class="material-icons ">edit</i></button>
+                    <button class="btn btn-floating"><i class="material-icons ">edit</i></button>
                 </td>
                 <td>
                     {!! Form::open(['method' => 'DELETE', 'url' => '/admin/deals/'.$deal->id]) !!}
-                    <button type="submit" class="btn red"><i class="material-icons ">cancel</i></button>
+                    <button type="submit" class="btn btn-floating red"><i class="material-icons ">cancel</i></button>
                     {!! Form::close() !!}
                 </td>
 

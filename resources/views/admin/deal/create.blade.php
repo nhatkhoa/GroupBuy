@@ -34,10 +34,7 @@
                                 {!! Form::select('category_id', $categories , null, ['placeholder' => 'Chọn danh mục']) !!}
                                 <label for="partner_id">Thuộc danh mục</label>
                             </div>
-                            <div class="input-field col s12">
-                                <textarea name="noted" class="materialize-textarea" length="120"></textarea>
-                                <label for="partner_id">Thông tin lưu ý</label>
-                            </div>
+
 
                         </div>
                     </div>
@@ -86,6 +83,22 @@
         <div class="row">
             <div class="col s12">
                 <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            Mô tả ngắn cho sản phẩm
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                        <textarea name="short_description" id="editor2" rows="10" cols="110">
+                            Thông tin sản nó phẩm...
+                        </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12">
+                <div class="card">
                    <div class="card-content">
                        <div class="card-title">
                            Mô tả sản phẩm
@@ -100,6 +113,22 @@
                    </div>
                 </div>
             </div>
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-title">
+                            Lưu ý khi mua
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                        <textarea name="noted" id="editor3" rows="10" cols="110">
+                            Lưu ý khi mua...
+                        </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     {!! Form::close() !!}
@@ -107,5 +136,7 @@
     <script src="/ckeditor/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('editor1');
+        CKEDITOR.replace('editor2');
+        CKEDITOR.replace('editor3');
     </script>
 @stop

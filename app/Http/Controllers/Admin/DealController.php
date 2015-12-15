@@ -74,7 +74,7 @@ class DealController extends Controller
      */
     public function show($id)
     {
-        //
+        return Deal::where('id', $id)->get()->first()->images();
     }
 
     /**

@@ -1,6 +1,7 @@
 <div class="col-md-3">
     <aside class="sidebar-left">
         @include('viewport.sidebar-left')
+        <!--
         <div class="sidebar-box">
             <h5>Filter By Price</h5>
             <input type="text" id="price-slider">
@@ -97,7 +98,7 @@
                     </label>
                 </li>
             </ul>
-        </div>
+        </div> -->
     </aside>
 
 </div>

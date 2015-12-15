@@ -26,6 +26,7 @@
 
     <!-- Your custom styles (blank file) -->
     <link rel="stylesheet" href="/css/mystyles.css">
+    <script src="/js/jquery.js"></script>
 
     @yield('styles')
 </head>
@@ -55,7 +56,7 @@
     @include('viewport.footer')
 
     <!-- Scripts queries -->
-    <script src="/js/jquery.js"></script>
+
     <script src="/js/boostrap.min.js"></script>
     <script src="/js/countdown.min.js"></script>
     <script src="/js/flexnav.min.js"></script>
@@ -71,6 +72,10 @@
     <script src="/js/owl-carousel.js"></script>
     <script src="/js/masonry.js"></script>
     <script src="/js/nicescroll.js"></script>
+    <script src="/js/pubsub.min.js"></script>
+
+    <script src="/js/app.js"></script>
+
 
     <!-- Custom scripts -->
     <script src="/js/custom.js"></script>

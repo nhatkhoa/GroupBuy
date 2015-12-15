@@ -1,6 +1,7 @@
 <div class="product-page-meta box">
     <h4>{!! $deal->name!!}</h4>
-   <a class="btn btn-primary btn-lg btn-block" href="#">Mua Ngay</a>
+    <p>{!! $deal->short_description !!}</p>
+   <a id="buy-button" class="btn btn-primary btn-lg btn-block" href="javascript:void(0)">Mua Ngay</a>
     <ul class="list product-page-meta-info">
         <li>
             <ul class="list product-page-meta-price-list">
@@ -25,3 +26,26 @@
         </li>
     </ul>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('#buy-button').click(function(e){
+            e.preventDefault();
+            console.log('asdadasda Login');
+
+            $.ajax({
+                url:'/cart',
+                type:'POST',
+                data:{
+                    id: '{!! $deal->id!!}'
+                },
+                success:function(data){
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    });
+</script>

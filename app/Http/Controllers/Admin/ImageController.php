@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Deal;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,9 @@ class ImageController extends Controller
      */
     public function index($deal_id)
     {
-
+        $deal = Deal::findOrNew($deal_id);
+        return view('admin.image.image')
+            ->with('images', $deal->images());
     }
 
     /**

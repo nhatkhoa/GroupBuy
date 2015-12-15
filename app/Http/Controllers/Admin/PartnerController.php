@@ -27,7 +27,8 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.partner.create');
+
     }
 
     /**
@@ -38,7 +39,8 @@ class PartnerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Partner::create($request->all());
+        return redirect('/admin/partners');
     }
 
     /**

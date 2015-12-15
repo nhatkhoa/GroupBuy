@@ -1,38 +1,51 @@
 @extends('admin')
 
+@section('heading')
+    <h3>Tạo Danh Mục Mới</h3>
+    @stop
+
 @section('content')
 
     {!! Form::open(['url' => '/admin/categories', 'class' => 'form-control container']) !!}
-    <p>
-        {!! Form::label('name', 'Tên danh mục')!!}
-        {!! Form::text('name', null, ['class' => 'form-control']) !!}
-    </p>
     <div class="row">
-        <p class="col-sm-6">
-            {!! Form::label('parent_id','Thuộc nhánh') !!}
-            {!! Form::select('parent_id', $categories , null, ['placeholder' => 'Chọn nhánh cha...', 'class' => 'form-control']) !!}
-        </p>
+        <div class="input-field col s12">
+            <input type="text" name="name"/>
+            <label for="name">Tên Danh Mục</label>
+        </div>
 
-        <p class="col-sm-6">
-        {!! Form::label('publish','Trạng Thái') !!}
-        <label class="btn-group" data-toggle="buttons">
-            <label class="btn btn-success-outline">
-                <input type="checkbox" name="publish" autocomplete="off"> Kích hoạt danh mục
-            </label>
+        <div class="input-field col s12">
+            <input type="text" name="icon"/>
+            <label for="icon">Icon Đại Diện</label>
+        </div>
 
-        </label>
-        </p>
+        <div class="input-field col s12">
+            {!! Form::select('parent_id', $categories , null, ['placeholder' => 'Chọn nhánh cha...']) !!}
+            <label for="partner_id">Danh Mục Cha</label>
+        </div>
+
+        <div class="col s12">
+            <div class="switch ">
+                <label>
+                    Ẩn Danh Mục
+                    <input name="publish" type="checkbox" checked>
+                    <span class="lever"></span>
+                    Hiển Thị Danh Mục Này
+                </label>
+            </div>
+        </div>
 
     </div>
-    <p class="row">
-    <div class="col-sm-6">
-        {!! Form::button('Hủy bỏ', ['class' => 'btn btn-default btn-block']) !!}
-    </div>
-    <div class="col-sm-6">
-        {!! Form::submit('Thêm mới', ['class' => 'btn btn-primary btn-block']) !!}
+
+    <div class="divider"></div>
+
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="waves-effect waves-light btn right">
+                <i class="material-icons left">check</i>
+                Tạo Danh Mục
+            </button>
+        </div>
     </div>
 
-
-    </p>
     {!! Form::close() !!}
 @stop

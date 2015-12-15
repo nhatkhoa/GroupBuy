@@ -48,6 +48,26 @@ class AuthController extends Controller
         ]);
     }
 
+    public function loginAjax(Request $request)
+    {
+        $auth = false;
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials, $request->has('remember'))) {
+            $auth = true; // Success
+        }
+
+        if ($request->ajax()) {
+            return response()->json([
+                'auth' => $auth,
+                'intended' => URL::previous()
+            ]);
+        } else {
+            return redirect()->intended(URL::route('dashboard'));
+        }
+        return redirect(URL::route('login_page'));
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *

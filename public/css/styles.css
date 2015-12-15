@@ -44,6 +44,7 @@ img {
   width: 100%;
   max-width: none;
 }
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', arial, helvetica, sans-serif;
   margin-top: 0;
@@ -2399,9 +2400,10 @@ ul.pagination li.next a:before {
   background: #1d6484;
 }
 .tabbable .tab-content {
+  box-shadow: 0 0 4px rgba(0,0,0, 0.4);
+
   padding: 20px;
-  border: 1px solid #d9d9d9;
-  border-top: none;
+
   background: #fff;
   -webkit-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
@@ -2923,6 +2925,9 @@ ul.pagination li.next a:before {
 }
 .row-no-gutter {
   margin: 0 !important;
+  height: 355px;
+  overflow-y: scroll;
+  box-shadow: 0 0 4px black;
 }
 .row-no-gutter > [class^="col-"] {
   padding: 0 !important;

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <table class="table table-hover">
+    <table class="bordered highlight responsive-table">
         <thead class="thead-inverse">
         <tr>
             <th>#</th>
@@ -26,12 +26,12 @@
                 <td>
                     <div class="pull-right">
                         {!! Form::open(['method' => 'DELETE', 'url' => '/admin/partners/'.$partner->id]) !!}
-                        {!! Form::submit('Xóa', ['class' => 'btn btn-danger btn-sm']) !!}
+                        <button type="submit" class="btn btn-floating red"><i class="material-icons">cancel</i></button>
                         {!! Form::close() !!}
                     </div>
 
                     <div class="pull-right">
-                        <a href="/admin/partners/{{$partner->id}}/edit" class="btn btn-primary btn-sm">Chỉnh Sửa</a>
+                        <a href="/admin/partners/{{$partner->id}}/edit" class="btn btn-floating green"><i class="material-icons">edit</i></a>
                         |&nbsp;
                     </div>
 

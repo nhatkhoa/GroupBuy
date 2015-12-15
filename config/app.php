@@ -147,6 +147,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        'Darryldecode\Cart\CartServiceProvider',
 
     ],
 
@@ -199,6 +200,7 @@ return [
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Cart' => 'Darryldecode\Cart\Facades\CartFacade',
 
     ],
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.1.24 (LTS) on 2015-12-09.
+ * Generated for Laravel 5.1.26 (LTS) on 2015-12-14.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -2544,6 +2544,7 @@ namespace {
          *
          * @param string $value
          * @return string 
+         * @throws \Illuminate\Contracts\Encryption\EncryptException
          * @static 
          */
         public static function encrypt($value){
@@ -2555,6 +2556,7 @@ namespace {
          *
          * @param string $payload
          * @return string 
+         * @throws \Illuminate\Contracts\Encryption\DecryptException
          * @static 
          */
         public static function decrypt($payload){
@@ -3449,7 +3451,7 @@ namespace {
          * Get an array with the values of a given column.
          *
          * @param string $column
-         * @param string $key
+         * @param string|null $key
          * @return \Illuminate\Support\Collection 
          * @static 
          */
@@ -6937,7 +6939,7 @@ namespace {
          * Determine if a translation exists for a given locale.
          *
          * @param string $key
-         * @param string $locale
+         * @param string|null $locale
          * @return bool 
          * @static 
          */
@@ -6949,7 +6951,7 @@ namespace {
          * Determine if a translation exists.
          *
          * @param string $key
-         * @param string $locale
+         * @param string|null $locale
          * @param bool $fallback
          * @return bool 
          * @static 
@@ -6963,7 +6965,7 @@ namespace {
          *
          * @param string $key
          * @param array $replace
-         * @param string $locale
+         * @param string|null $locale
          * @param bool $fallback
          * @return string 
          * @static 
@@ -7964,7 +7966,7 @@ namespace {
     class Redirect extends \Illuminate\Support\Facades\Redirect{
         
         /**
-         * Create a new redirect response to the "index" route.
+         * Create a new redirect response to the "home" route.
          *
          * @param int $status
          * @return \Illuminate\Http\RedirectResponse 
@@ -9922,7 +9924,6 @@ namespace {
          *
          * @param array $controllers
          * @return void 
-         * @deprecated since version 5.1.
          * @static 
          */
         public static function controllers($controllers){
@@ -9936,7 +9937,6 @@ namespace {
          * @param string $controller
          * @param array $names
          * @return void 
-         * @deprecated since version 5.1.
          * @static 
          */
         public static function controller($uri, $controller, $names = array()){
@@ -10824,6 +10824,16 @@ namespace {
         }
         
         /**
+         * Remove data that was flashed for only the current request.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function removeFlashNowData(){
+            \Illuminate\Session\Store::removeFlashNowData();
+        }
+        
+        /**
          * Checks if an attribute is defined.
          *
          * @param string $name The attribute name
@@ -10926,6 +10936,19 @@ namespace {
          */
         public static function flash($key, $value){
             \Illuminate\Session\Store::flash($key, $value);
+        }
+        
+        /**
+         * Flash a key / value pair to the session
+         * for immediate use.
+         *
+         * @param string $key
+         * @param mixed $value
+         * @return void 
+         * @static 
+         */
+        public static function now($key, $value){
+            \Illuminate\Session\Store::now($key, $value);
         }
         
         /**
@@ -11470,6 +11493,29 @@ namespace {
             return \Illuminate\Routing\UrlGenerator::setRootControllerNamespace($rootNamespace);
         }
         
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro){
+            \Illuminate\Routing\UrlGenerator::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasMacro($name){
+            return \Illuminate\Routing\UrlGenerator::hasMacro($name);
+        }
+        
     }
 
 
@@ -11782,6 +11828,7 @@ namespace {
          *
          * @param bool $overwrite
          * @return string 
+         * @throws \InvalidArgumentException
          * @static 
          */
         public static function stopSection($overwrite = false){
@@ -11792,6 +11839,7 @@ namespace {
          * Stop injecting content into a section and append it.
          *
          * @return string 
+         * @throws \InvalidArgumentException
          * @static 
          */
         public static function appendSection(){
@@ -12891,6 +12939,19 @@ namespace {
         }
         
         /**
+         * Create a color input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return string 
+         * @static 
+         */
+        public static function color($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::color($name, $value, $options);
+        }
+        
+        /**
          * Create a submit button element.
          *
          * @param string $value
@@ -12962,7 +13023,7 @@ namespace {
         /**
          * Get the session store implementation.
          *
-         * @return \Illuminate\Session\Store $session
+         * @return \Illuminate\Session\SessionInterface $session
          * @static 
          */
         public static function getSessionStore(){
@@ -12972,7 +13033,7 @@ namespace {
         /**
          * Set the session store implementation.
          *
-         * @param \Illuminate\Session\Store $session
+         * @param \Illuminate\Session\SessionInterface $session
          * @return $this 
          * @static 
          */
@@ -13281,6 +13342,263 @@ namespace {
          */
         public static function hasMacro($name){
             return \Collective\Html\HtmlBuilder::hasMacro($name);
+        }
+        
+    }
+
+
+    class Cart extends \Darryldecode\Cart\Facades\CartFacade{
+        
+        /**
+         * get instance name of the cart
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getInstanceName(){
+            return \Darryldecode\Cart\Cart::getInstanceName();
+        }
+        
+        /**
+         * get an item on a cart by item ID
+         *
+         * @param $itemId
+         * @return mixed 
+         * @static 
+         */
+        public static function get($itemId){
+            return \Darryldecode\Cart\Cart::get($itemId);
+        }
+        
+        /**
+         * check if an item exists by item ID
+         *
+         * @param $itemId
+         * @return bool 
+         * @static 
+         */
+        public static function has($itemId){
+            return \Darryldecode\Cart\Cart::has($itemId);
+        }
+        
+        /**
+         * add item to the cart, it can be an array or multi dimensional array
+         *
+         * @param string|array $id
+         * @param string $name
+         * @param float $price
+         * @param int $quantity
+         * @param array $attributes
+         * @param \Darryldecode\Cart\CartCondition|array $conditions
+         * @return $this 
+         * @throws InvalidItemException
+         * @static 
+         */
+        public static function add($id, $name = null, $price = null, $quantity = null, $attributes = array(), $conditions = array()){
+            return \Darryldecode\Cart\Cart::add($id, $name, $price, $quantity, $attributes, $conditions);
+        }
+        
+        /**
+         * update a cart
+         *
+         * @param $id
+         * @param $data the $data will be an associative array, you don't need to pass all the data, only the key value
+         * of the item you want to update on it
+         * @static 
+         */
+        public static function update($id, $data){
+            return \Darryldecode\Cart\Cart::update($id, $data);
+        }
+        
+        /**
+         * add condition on an existing item on the cart
+         *
+         * @param int|string $productId
+         * @param \Darryldecode\Cart\CartCondition $itemCondition
+         * @return $this 
+         * @static 
+         */
+        public static function addItemCondition($productId, $itemCondition){
+            return \Darryldecode\Cart\Cart::addItemCondition($productId, $itemCondition);
+        }
+        
+        /**
+         * removes an item on cart by item ID
+         *
+         * @param $id
+         * @static 
+         */
+        public static function remove($id){
+            return \Darryldecode\Cart\Cart::remove($id);
+        }
+        
+        /**
+         * clear cart
+         *
+         * @static 
+         */
+        public static function clear(){
+            return \Darryldecode\Cart\Cart::clear();
+        }
+        
+        /**
+         * add a condition on the cart
+         *
+         * @param \Darryldecode\Cart\CartCondition|array $condition
+         * @return $this 
+         * @throws InvalidConditionException
+         * @static 
+         */
+        public static function condition($condition){
+            return \Darryldecode\Cart\Cart::condition($condition);
+        }
+        
+        /**
+         * get conditions applied on the cart
+         *
+         * @return \Darryldecode\Cart\CartConditionCollection 
+         * @static 
+         */
+        public static function getConditions(){
+            return \Darryldecode\Cart\Cart::getConditions();
+        }
+        
+        /**
+         * get condition applied on the cart by its name
+         *
+         * @param $conditionName
+         * @return \Darryldecode\Cart\CartCondition 
+         * @static 
+         */
+        public static function getCondition($conditionName){
+            return \Darryldecode\Cart\Cart::getCondition($conditionName);
+        }
+        
+        /**
+         * Get all the condition filtered by Type
+         * Please Note that this will only return condition added on cart bases, not those conditions added
+         * specifically on an per item bases
+         *
+         * @param $type
+         * @return \Darryldecode\Cart\CartConditionCollection 
+         * @static 
+         */
+        public static function getConditionsByType($type){
+            return \Darryldecode\Cart\Cart::getConditionsByType($type);
+        }
+        
+        /**
+         * Remove all the condition with the $type specified
+         * Please Note that this will only remove condition added on cart bases, not those conditions added
+         * specifically on an per item bases
+         *
+         * @param $type
+         * @return $this 
+         * @static 
+         */
+        public static function removeConditionsByType($type){
+            return \Darryldecode\Cart\Cart::removeConditionsByType($type);
+        }
+        
+        /**
+         * removes a condition on a cart by condition name,
+         * this can only remove conditions that are added on cart bases not conditions that are added on an item/product.
+         * 
+         * If you wish to remove a condition that has been added for a specific item/product, you may
+         * use the removeItemCondition(itemId, conditionName) method instead.
+         *
+         * @param $conditionName
+         * @return void 
+         * @static 
+         */
+        public static function removeCartCondition($conditionName){
+            \Darryldecode\Cart\Cart::removeCartCondition($conditionName);
+        }
+        
+        /**
+         * remove a condition that has been applied on an item that is already on the cart
+         *
+         * @param $itemId
+         * @param $conditionName
+         * @return bool 
+         * @static 
+         */
+        public static function removeItemCondition($itemId, $conditionName){
+            return \Darryldecode\Cart\Cart::removeItemCondition($itemId, $conditionName);
+        }
+        
+        /**
+         * remove all conditions that has been applied on an item that is already on the cart
+         *
+         * @param $itemId
+         * @return bool 
+         * @static 
+         */
+        public static function clearItemConditions($itemId){
+            return \Darryldecode\Cart\Cart::clearItemConditions($itemId);
+        }
+        
+        /**
+         * clears all conditions on a cart,
+         * this does not remove conditions that has been added specifically to an item/product.
+         * 
+         * If you wish to remove a specific condition to a product, you may use the method: removeItemCondition($itemId, $conditionName)
+         *
+         * @return void 
+         * @static 
+         */
+        public static function clearCartConditions(){
+            \Darryldecode\Cart\Cart::clearCartConditions();
+        }
+        
+        /**
+         * get cart sub total
+         *
+         * @return float 
+         * @static 
+         */
+        public static function getSubTotal(){
+            return \Darryldecode\Cart\Cart::getSubTotal();
+        }
+        
+        /**
+         * the new total in which conditions are already applied
+         *
+         * @return float 
+         * @static 
+         */
+        public static function getTotal(){
+            return \Darryldecode\Cart\Cart::getTotal();
+        }
+        
+        /**
+         * get total quantity of items in the cart
+         *
+         * @return int 
+         * @static 
+         */
+        public static function getTotalQuantity(){
+            return \Darryldecode\Cart\Cart::getTotalQuantity();
+        }
+        
+        /**
+         * get the cart
+         *
+         * @return \Darryldecode\Cart\CartCollection 
+         * @static 
+         */
+        public static function getContent(){
+            return \Darryldecode\Cart\Cart::getContent();
+        }
+        
+        /**
+         * check if cart is empty
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isEmpty(){
+            return \Darryldecode\Cart\Cart::isEmpty();
         }
         
     }
