@@ -3,6 +3,7 @@
 @section('content')
 
     <form action="/admin/deals" method="post">
+        {!! csrf_field() !!}
         <div class="row">
             <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
                 <button class="btn-floating btn-large green">

@@ -7,6 +7,7 @@
 @section('content')
 
     <form action="/admin/categories" method="post" ckass="container">
+        {!! csrf_field() !!}
         <div class="row">
             <div class="input-field col s12">
                 <input type="text" name="name"/>

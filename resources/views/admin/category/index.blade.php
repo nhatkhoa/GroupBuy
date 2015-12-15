@@ -23,6 +23,7 @@
                 <td>
                     <div class="pull-right">
                         <form action="/admin/categories/{!! $category->id !!}" method="DELETE">
+                            {!! csrf_field() !!}
                             <button type="submit" class="btn btn-floating red"><i class="material-icons">cancel</i></button>
                         </form>
                     </div>

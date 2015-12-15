@@ -7,6 +7,7 @@
 @section('content')
 
     <form action="/admin/partners" method="post">
+        {!! csrf_field() !!}
         <div class="card-content">
             <div class="row">
                 <div class="input-field col s6">

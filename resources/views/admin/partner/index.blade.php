@@ -25,9 +25,10 @@
 
                 <td>
                     <div class="pull-right">
-                        {!! Form::open(['method' => 'DELETE', 'url' => '/admin/partners/'.$partner->id]) !!}
-                        <button type="submit" class="btn btn-floating red"><i class="material-icons">cancel</i></button>
-                        {!! Form::close() !!}
+                        <form action="/admin/partners/{!!  $partner->id!!}" method="DELETE">
+                            {!! csrf_field() !!}
+                            <button type="submit" class="btn btn-floating red"><i class="material-icons">cancel</i></button>
+                        </form>
                     </div>
 
                     <div class="pull-right">

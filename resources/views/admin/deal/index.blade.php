@@ -44,6 +44,7 @@
                 </td>
                 <td>
                     <form action="/admin/deals/{!! $deal->id !!}" method="DELETE">
+                        {!! csrf_field() !!}
                         <button type="submit" class="btn btn-floating red"><i class="material-icons ">cancel</i></button>
                     </form>
                 </td>
