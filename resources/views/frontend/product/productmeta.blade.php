@@ -26,26 +26,3 @@
         </li>
     </ul>
 </div>
-
-<script>
-    $(document).ready(function(){
-        $('#buy-button').click(function(e){
-            e.preventDefault();
-            console.log('asdadasda Login');
-
-            $.ajax({
-                url:'/cart',
-                type:'POST',
-                data:{
-                    id: '{!! $deal->id!!}'
-                },
-                success:function(data){
-                    console.log(data);
-                },
-                error: function (data) {
-                    console.log(data);
-                }
-            });
-        });
-    });
-</script>

@@ -78,7 +78,6 @@
 
 <script>
     $(document).ready(function(){
-        loginAjax
         $('#loginButton').click(function(e){
             e.preventDefault();
             console.log('asdadasda Login');
