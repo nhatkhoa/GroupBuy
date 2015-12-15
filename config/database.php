@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'heroku'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,7 +84,6 @@ return [
             'charset'  => 'utf8',
             'prefix'   => '',
         ],
-        /*
         'heroku' => [
             'driver'   => 'pgsql',
             'host'     => parse_url(getenv("DATABASE_URL"))["host"],
@@ -95,7 +94,6 @@ return [
             'prefix'   => '',
             'schema'   => 'public',
         ],
-        */
 
     ],
 
