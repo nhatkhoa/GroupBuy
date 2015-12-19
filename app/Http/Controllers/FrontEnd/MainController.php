@@ -49,4 +49,11 @@ class MainController extends Controller
     public function postCart(Request $request){
         return response()->json(['test' => 'ok']);
     }
+
+    public function search(Request $request){
+      $keyword = $request->get('keyword');
+      $items = Deal::where('name', 'like', '%'.$keyword.'%');
+      return view('frontend.category.category')
+          ->with('products', $items->paginate(10));
+    }
 }
