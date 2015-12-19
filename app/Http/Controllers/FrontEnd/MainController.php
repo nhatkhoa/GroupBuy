@@ -36,7 +36,7 @@ class MainController extends Controller
             $item = $deals->orderBy('time_expired');
         }
         return view('frontend.category.category')
-            ->with('products', $items->paginate(10))
+            ->with('products', $items->paginate(3))
             ->with('categories', Category::all());
     }
 
