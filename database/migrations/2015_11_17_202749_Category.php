@@ -16,7 +16,7 @@ class Category extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('icon');
+            $table->string('icon')->default('home');
             $table->string('name')->default('NoName');
             $table->integer('parent_id')->unsigned()->nullable();
             $table->boolean('publish')->default(false);
