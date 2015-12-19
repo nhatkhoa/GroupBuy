@@ -19,7 +19,7 @@ class MainController extends Controller
      */
     public function index()
     {
-        return view('frontend.index.index');
+        return view('frontend.index.index')->with('categories', Category::all());
     }
 
     public function listProductByCategory(Request $request, $category_id){
@@ -36,14 +36,16 @@ class MainController extends Controller
             $item = $deals->orderBy('time_expired');
         }
         return view('frontend.category.category')
-            ->with('products', $items->paginate(10));
+            ->with('products', $items->paginate(10))
+            ->with('categories', Category::all());
     }
 
     public function productByCategory($product_id){
         $deal = Deal::where('id', $product_id)->get()->first();
 
         return view('frontend.product.product')
-            ->with('deal', $deal);
+            ->with('deal', $deal)
+            ->with('categories', Category::all());
     }
 
     public function postCart(Request $request){
@@ -54,6 +56,7 @@ class MainController extends Controller
       $keyword = $request->get('keyword');
       $items = Deal::where('name', 'like', '%'.$keyword.'%');
       return view('frontend.category.category')
-          ->with('products', $items->paginate(10));
+          ->with('products', $items->paginate(10))
+          ->with('categories', Category::all());
     }
 }
