@@ -4,7 +4,7 @@ Carbon\Carbon::setLocale('vi');
 <a class="col-md-4" href="/san-pham/{!! $data->id !!}/"  data-toggle="tooltip" data-placement="top" title="{{ $data->short_description }}">
     <div class="product-thumb">
         <header class="product-header">
-            <img src="{!! $data->images()[0] !!}" alt="Image Alternative text" title="Ana 29"/>
+            <img src="{!! count($data->images()) != 0 ? $data->images()[0] : 'https://k12110323.herokuapp.com/img/800x600.png' !!}" alt="Image Alternative text" title="Ana 29"/>
         </header>
         <div class="product-inner">
             <h5 class="product-title">{!! $data->name !!}</h5>
