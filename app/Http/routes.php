@@ -36,6 +36,7 @@ Route::group(['namespace' => 'Frontend'], function(){
 
 Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
     Route::resource('categories','CategoryController');
+    Route::post('/categories/{id}', 'CategoryController@destroy');
     Route::resource('deals','DealController');
     Route::resource('partners','PartnerController');
 

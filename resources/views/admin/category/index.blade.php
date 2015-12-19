@@ -22,7 +22,7 @@
                 <td>{{$category->parent_id == null ? 'Chính' : $category->parent()->first()->name}}</td>
                 <td>
                     <div class="pull-right">
-                        <form action="/admin/categories/{!! $category->id !!}" method="DELETE">
+                        <form action="/admin/categories/{!! $category->id !!}" method="POST">
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-floating red"><i class="material-icons">cancel</i></button>
                         </form>
