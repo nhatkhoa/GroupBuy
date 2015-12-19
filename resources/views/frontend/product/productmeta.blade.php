@@ -7,7 +7,7 @@
             <ul class="list product-page-meta-price-list">
                 <li><span class="product-page-meta-title">Giá Gốc</span><span class="product-page-meta-price">{!!number_format($deal->list_price, 3, '.', '.')!!}đ</span>
                 </li>
-                <li class="pull-right"><span class="product-page-meta-title">Giá giảm</span><span class="product-page-meta-price">{!!round ($deal->deal_price/$deal->list_price*100) !!}%</span>
+                <li class="pull-right"><span class="product-page-meta-title">Giá giảm</span><span class="product-page-meta-price">{!!100 - round($deal->deal_price/$deal->list_price*100) !!}%</span>
                 </li>
             </ul>
         </li>
