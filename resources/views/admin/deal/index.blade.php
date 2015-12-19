@@ -43,7 +43,7 @@
                     <button class="btn btn-floating"><i class="material-icons ">edit</i></button>
                 </td>
                 <td>
-                    <form action="/admin/deals/{!! $deal->id !!}" method="DELETE">
+                    <form action="/admin/deals/{!! $deal->id !!}" method="POST">
                         {!! csrf_field() !!}
                         <button type="submit" class="btn btn-floating red"><i class="material-icons ">cancel</i></button>
                     </form>

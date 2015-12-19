@@ -40,7 +40,7 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
     Route::resource('categories','CategoryController');
     Route::post('/categories/{id}', 'CategoryController@destroy');
     Route::resource('deals','DealController');
-    Route::post('deals/{id}','DealController@destroy');
+    Route::post('/deals/{id}','DealController@destroy');
     Route::resource('partners','PartnerController');
 
     Route::get('/deals/{deal_id}/images', 'ImageController@index');
