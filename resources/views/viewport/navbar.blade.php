@@ -40,12 +40,34 @@
             <div class="col-md-4">
                 <ul class="login-register">
                     @include('viewport.cart')
-                    <li><a class="popup-text" href="#login-dialog" data-effect="mfp-move-from-top"><i
+                    @unless (Auth::check())
+
+                    <li><a href="/dang-nhap" data-effect="mfp-move-from-top"><i
                                     class="fa fa-sign-in"></i>Đăng Nhập</a>
                     </li>
-                    <li><a class="popup-text" href="#register-dialog" data-effect="mfp-move-from-top"><i
+                    <li><a href="/dang-ky"  data-effect="mfp-move-from-top"><i
                                     class="fa fa-edit"></i>Đăng Kí</a>
                     </li>
+                    @endunless
+                    @if(Auth::check())
+
+                        @if(Auth::getUser()->getAttribute('admin') == true)
+                            <li><a href="/admin/deals" ><i
+                                            class="fa fa-user"></i>Trang Quản Trị</a>
+                            </li>
+                        @else
+                            <li><a href="javascript:voidd(0)" ><i
+                                            class="fa fa-user"></i>{!! Auth::getUser()->getAttribute('name') !!}</a>
+                            </li>
+                        @endif
+                        <li><a href="/auth/logout" ><i
+                                        class="fa fa-cancel"></i>Đăng Xuất</a>
+                        </li>
+
+
+                    @endif
+
+
                 </ul>
             </div>
         </div>

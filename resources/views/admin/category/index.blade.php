@@ -20,20 +20,16 @@
                 <th scope="row"><i class="fa fa-{{$category->icon}}"></i></th>
                 <td>{{$category->name}}</td>
                 <td>{{$category->parent_id == null ? 'Chính' : $category->parent()->first()->name}}</td>
-                <td>
-                    <div class="pull-right">
+                <td class="row">
+                    <div class="col s6">
+                        <a href="/admin/categories/{{$category->id}}/edit" class="btn btn-floating green"><i class="material-icons">edit</i></a>
+                    </div>
+                    <div class="col s6">
                         <form action="/admin/categories/{!! $category->id !!}" method="POST">
                             {!! csrf_field() !!}
                             <button type="submit" class="btn btn-floating red"><i class="material-icons">cancel</i></button>
                         </form>
                     </div>
-
-                    <div class="pull-right">
-                        <a href="/admin/categories/{{$category->id}}/edit" class="btn btn-floating green"><i class="material-icons">edit</i></a>
-                        |&nbsp;
-                    </div>
-
-
 
                 </td>
             </tr>

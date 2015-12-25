@@ -15,6 +15,8 @@ use App\Model\Category;
 use App\Model\Deal;
 use App\Model\Partner;
 
+View::share('categories', Category::all());
+
 Route::group(['prefix' => 'api', 'namespace' => 'Api', 'middleware' => 'cors'], function(){
     Route::get('/categories', function(){
         $categories = Category::where('parent_id', null)->get();
@@ -28,15 +30,23 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api', 'middleware' => 'cors'], 
 
 Route::group(['namespace' => 'Frontend'], function(){
     Route::get('/', 'MainController@index');
+    Route::get('/index', 'MainController@index');
     Route::get('/danh-muc/{category_id}', 'MainController@listProductByCategory');
     Route::get('/san-pham/{deal_id}', 'MainController@productByCategory');
-    Route::post('/cart', 'MainController@postCard');
 
     Route::post('/search', 'MainController@search');
 
+    Route::post('/san-pham/{deal_id}', 'MainController@addToCart');
+    Route::get('/gio-hang', 'MainController@getCarts');
+    Route::post('/gio-hang/{dea_id}', 'MainController@removeCart');
+    Route::post('/gio-hang/giam/{deal_id}', 'MainController@minusCart');
+
+    Route::get('/thanh-toan', 'MainController@getCheckout');
+
+
 });
 
-Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
+Route::group(['prefix'=>'admin', 'namespace' => 'Admin', 'middleware' => 'App\Http\Middleware\Admin'], function(){
     Route::resource('categories','CategoryController');
     Route::post('/categories/{id}', 'CategoryController@destroy');
     Route::resource('deals','DealController');
@@ -46,7 +56,11 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin'], function(){
     Route::get('/deals/{deal_id}/images', 'ImageController@index');
 });
 
-Route::post('auth/login', 'Auth\AuthController@loginAjax');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::group([], function(){
+    Route::post('/auth/register','Auth\AuthController@postRegister');
+    Route::get('/dang-ky','Auth\AuthController@getRegister');
+    Route::get('/dang-nhap','Auth\AuthController@getLogin');
+    Route::post('/auth/login','Auth\AuthController@postLogin');
+    Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+});

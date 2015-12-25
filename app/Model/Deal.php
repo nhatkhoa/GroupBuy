@@ -27,4 +27,8 @@ class Deal extends Model
         return array_pop($match);
     }
 
+    public function getThumb(){
+        return count($this->images()) != 0 ? $this->images()[0] : '/img/70x70.png';
+    }
+
 }

@@ -20,9 +20,9 @@ class AuthController extends Controller
     | a simple trait to add these behaviors. Why don't you explore it?
     |
     */
+    protected $redirectPath = "/";
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
-
     /**
      * Create a new authentication controller instance.
      *
@@ -44,30 +44,9 @@ class AuthController extends Controller
         return Validator::make($data, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|confirmed|min:4',
         ]);
     }
-
-    public function loginAjax(Request $request)
-    {
-        $auth = false;
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials, $request->has('remember'))) {
-            $auth = true; // Success
-        }
-
-        if ($request->ajax()) {
-            return response()->json([
-                'auth' => $auth,
-                'intended' => URL::previous()
-            ]);
-        } else {
-            return redirect()->intended(URL::route('dashboard'));
-        }
-        return redirect(URL::route('login_page'));
-    }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -76,6 +55,7 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        print(json_encode($data));
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

@@ -1,7 +1,11 @@
 <div class="product-page-meta box">
     <h4>{!! $deal->name!!}</h4>
     <p>{!! $deal->short_description !!}</p>
-   <a id="buy-button" class="btn btn-primary btn-lg btn-block" href="javascript:void(0)">Mua Ngay</a>
+    <form action="/san-pham/{!! $deal->id !!}" method="POST">
+        @unless($deal->time_expired < Carbon\Carbon::now())
+        <button type="submit "id="{!! $deal->id !!}" class="btn btn-primary btn-lg btn-block buy-button ">Mua Ngay <span class="badge">{!! Cart::get($deal->id) != null ?   Cart::get($deal->id)->quantity : ''!!}</span> </button>
+        @endunless
+    </form>
     <ul class="list product-page-meta-info">
         <li>
             <ul class="list product-page-meta-price-list">
@@ -19,8 +23,14 @@
             </ul>
         </li>
         <li><span class="product-page-meta-title">Thời gian còn lại</span>
+
+            @if($deal->time_expired < Carbon\Carbon::now())
+                <br/>
+                    <h4><Strong>Hết hạn rồi!</Strong></h4>
+            @else
             <!-- COUNTDOWN -->
             <div data-countdown="{!! $deal->time_expired !!}" class="countdown countdown-inline"></div>
+            @endif
         </li>
         <li><span class="product-page-meta-title">5000+ người mua</span>
         </li>
