@@ -11,7 +11,6 @@ class Payment extends Model
         'sub_total',
         'fee',
         'total',
-        'money_type',
-        'shipped'
+        'money_type'
     ];
 }
