@@ -13,8 +13,6 @@ class UpdatePaymentRemoveShipped extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('shipped');
-            $table->boolean('shipped')->default(false);
         });
     }
 

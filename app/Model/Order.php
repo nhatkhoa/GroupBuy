@@ -11,7 +11,8 @@ class Order extends Model
 
     protected $fillable = [
         'quantity',
-        'total'
+        'total',
+        'shipped'
     ];
 
     public function customer(){
