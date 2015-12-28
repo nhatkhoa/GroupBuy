@@ -12,15 +12,8 @@ class UpdatePaymentRemoveShipped extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('orders');
-        Schema::create('orders', function (Blueprint $table) {
-            $table->softDeletes();
-            $table->timestamps();
-            $table->string('type');
-            $table->integer('sub_total');
-            $table->integer('fee');
-            $table->integer('total');
-            $table->integer('money_type');
+        Schema::table('orders', function (Blueprint $table) {
+            $table->dropColumn('shipped');
             $table->boolean('shipped')->default(false);
         });
     }
