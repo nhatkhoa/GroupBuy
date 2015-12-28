@@ -1,4 +1,4 @@
-@if(Auth::user() != null && Auth::user()->admin == false)
+@if(!Auth::check() || (Auth::user() != null && Auth::user()->admin == false))
     <li class="shopping-cart shopping-cart-white"><a href="/gio-hang"><i
                     class="fa fa-shopping-cart"></i>Giỏ Hàng</a>
 

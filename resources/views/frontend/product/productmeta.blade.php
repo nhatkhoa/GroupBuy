@@ -3,7 +3,7 @@
     <p>{!! $deal->short_description !!}</p>
     <form action="/san-pham/{!! $deal->id !!}" method="POST">
         @unless($deal->time_expired < Carbon\Carbon::now())
-            @if(Auth::user() != null && Auth::user()->admin == false)
+            @if(!Auth::check() || (Auth::user() != null && Auth::user()->admin == false))
         <button type="submit "id="{!! $deal->id !!}" class="btn btn-primary btn-lg btn-block buy-button ">Mua Ngay <span class="badge">{!! Cart::get($deal->id) != null ?   Cart::get($deal->id)->quantity : ''!!}</span> </button>
             @endif
                 @endunless
