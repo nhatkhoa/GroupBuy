@@ -12,6 +12,7 @@ class Category extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('categories');
 
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
@@ -19,13 +20,11 @@ class Category extends Migration
             $table->string('icon')->default('home');
             $table->string('name')->default('NoName');
             $table->integer('parent_id')->unsigned()->nullable();
+            $table->foreign('parent_id')->references('id')->on('categories')->delete('cascade');
             $table->boolean('publish')->default(false);
             $table->softDeletes();
         });
 
-        Schema::table('categories', function (Blueprint $table) {
-            $table->foreign('parent_id')->references('id')->on('categories')->delete('cascade');
-        });
     }
 
     /**
@@ -35,8 +34,6 @@ class Category extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('categories');
     }
 }

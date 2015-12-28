@@ -15,7 +15,7 @@ use App\Model\Category;
 use App\Model\Deal;
 use App\Model\Partner;
 
-View::share('categories', Category::all());
+
 
 Route::group(['prefix' => 'api', 'namespace' => 'Api', 'middleware' => 'cors'], function(){
     Route::get('/categories', function(){
@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::post('/gio-hang/giam/{deal_id}', 'MainController@minusCart');
 
     Route::get('/thanh-toan', 'MainController@getCheckout');
+    Route::post('/thanh-toan', 'MainController@postCheckout');
 
 
 });
@@ -54,6 +55,7 @@ Route::group(['prefix'=>'admin', 'namespace' => 'Admin', 'middleware' => 'App\Ht
     Route::resource('partners','PartnerController');
 
     Route::get('/deals/{deal_id}/images', 'ImageController@index');
+    Route::get('/', 'DealController@index');
 });
 
 Route::group([], function(){

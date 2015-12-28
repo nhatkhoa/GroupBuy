@@ -32,7 +32,7 @@
                 <li><span>Thành tiền</span><span>{!!number_format(Cart::getTotal(), 3, '.', '.')!!}đ</span>
                 </li>
             </ul>
-            <a href="#" class="btn btn-primary btn-lg">Thanh Toán</a>
+            <a href="/thanh-toan" class="btn btn-primary btn-lg">Thanh Toán</a>
         </div>
     </div>
 

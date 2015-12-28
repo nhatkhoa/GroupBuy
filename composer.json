@@ -15,7 +15,8 @@
     "laravelcollective/html": "5.1.*",
     "jenssegers/date": "^3.0",
     "intervention/image": "^2.3",
-    "darryldecode/cart": "dev-master"
+    "darryldecode/cart": "dev-master",
+    "netshell/paypal": "dev-master"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

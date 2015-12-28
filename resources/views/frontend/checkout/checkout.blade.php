@@ -10,108 +10,74 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>QTY</th>
-                                <th>Price</th>
+                                <th>Sản Phẩm</th>
+                                <th>Số Lượng</th>
+                                <th>Đơn Giá</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>New Glass Collection</td>
-                                <td>1</td>
-                                <td>$150</td>
-                            </tr>
-                            <tr>
-                                <td>Canon Camera</td>
-                                <td>1</td>
-                                <td>$200</td>
-                            </tr>
-                            <tr>
-                                <td>Jack Daniels Huge Pack</td>
-                                <td>1</td>
-                                <td>$150</td>
-                            </tr>
+                           @foreach(Cart::getContent() as $cart)
+                               <tr>
+                                   <td>{!! $cart->name !!}</td>
+                                   <td>{!! $cart->quantity !!}</td>
+                                   <td>{!!number_format($cart->price, 3, '.', '.')!!}đ</td>
+                               </tr>
+                           @endforeach
+
                             </tbody>
                         </table>
                         <ul class="cart-total-list text-center mb0">
-                            <li><span>Sub Total</span><span>$500.00</span>
+                            <li><span>Tổng Tiền</span><span>{!!number_format(Cart::getSubTotal(), 3, '.', '.')!!}đ</span>
                             </li>
-                            <li><span>Shipping</span><span>$0.00</span>
+                            <li><span>Giao Hàng</span><span>0.000đ</span>
                             </li>
-                            <li><span>Taxes</span><span>$0.00</span>
+                            <li><span>Thuế</span><span>0.000đ</span>
                             </li>
-                            <li><span>Total</span><span>$500.00</span>
+                            <li><span>Thành Tiền</span><span>{!!number_format(Cart::getTotal(), 3, '.', '.')!!}đ</span>
                             </li>
                         </ul>
                     </div>
                 </aside>
             </div>
             <div class="col-md-8">
-                <p class="mb20"><a href="#">Login</a> or <a href="#">Register</a> for faster payment.</p>
+                <p class="mb20"><a href="#">Đăng Nhập</a> hoặc <a href="#">Đăng Ký</a> để nhanh chóng hơn.</p>
                 <div class="row">
                     <div class="col-md-6">
-                        <h3>Pay Via Credit/Debit Card</h3>
-                        <form action="">
+                        <h3>Giao hàng & Nhận tiền</h3>
+                        <form action="/thanh-toan" method="POST">
                             <!-- <legend>Personal Information</legend> -->
                             <div class="form-group">
-                                <label for="">First &amp; Last Name</label>
-                                <input type="text" class="form-control">
+                                <label for="">Họ tên đầy đủ</label>
+                                <input type="text" name="fullname" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="">Phone Number</label>
-                                <input type="text" class="form-control">
+                                <label for="">Điện thoại liên hệ</label>
+                                <input type="text" name="phone" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Email</label>
+                                <input type="text" name="email" class="form-control">
+                            </div>
+
+                            <legend>Địa chỉ nhận hàng</legend>
+                            <div class="form-group">
+                                <label for="">Địa chỉ</label>
+                                <input type="text" name="address" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="">E-mail</label>
-                                <input type="text" class="form-control">
+                                <label for="">Ghi Chú</label>
+                                <textarea name="noted" class="form-control">
+                                    </textarea>
                             </div>
-                            <legend>Address</legend>
-                            <div class="form-group">
-                                <label for="">Country</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="">City</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="">Address</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="">ZIP/Postal Code</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <legend>Card Information</legend>
-                            <div class="cc-form">
-                                <div class="clearfix">
-                                    <div class="form-group form-group-cc-number">
-                                        <label>Card Number</label>
-                                        <input placeholder="xxxx xxxx xxxx xxxx" type="text" class="form-control"><span class="cc-card-icon"></span>
-                                    </div>
-                                    <div class="form-group form-group-cc-cvc">
-                                        <label>CVC</label>
-                                        <input placeholder="xxxx" type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="clearfix">
-                                    <div class="form-group form-group-cc-name">
-                                        <label>Cardholder Name</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group form-group-cc-date">
-                                        <label>Valid Thru</label>
-                                        <input placeholder="mm/yy" type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="submit" class="btn btn-primary" value="Proceed Payment">
+
+                            <input type="submit" class="btn btn-primary" value="Xác Nhận">
                         </form>
                     </div>
                     <div class="col-md-5 col-md-offset-1">
-                        <h3>Pay Via Paypal</h3>
-                        <p>Important: You will be redirected to PayPal's website to securely complete your payment.</p>
-                        <a href="#" class="btn btn-primary">Checkout via Paypal</a>
+                        <h3>Thanh toán qua Paypal</h3>
+                        <p>Chú ý: Bạn sẽ được chuyển qua website của Paypal để tiếp tục quá trình thanh toán.</p>
+                        <a href="#" class="btn btn-primary">Chấp Nhận Thanh Toán Paypal</a>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Model\Category;
+use App\Model\Customer;
 use App\Model\Deal;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -130,6 +131,26 @@ class MainController extends Controller
     }
 
     public function getCheckout(){
-        return view('frontend.checkout.checkout');
+        return view('frontend.checkout.checkout')
+            ->with('categories', Category::all());
+    }
+
+    public function postCheckout(Request $request){
+        \DB::beginTransaction();
+        $customer = Customer::create($request->all());
+        $order = $customer->orders()->create(['quantity' => \Cart::getTotalQuantity(), 'total' => \Cart::getTotal()]);
+        foreach (\Cart::getContent() as $cart) {
+            $order->details()->create([
+                'deal_id' => $cart->id,
+                'quantity' => $cart->quantity,
+                'price' => $cart->price
+            ]);
+        }
+        $order->push();
+        $customer->push();
+        \DB::commit();
+        \Cart::clear();
+        return view('frontend.checkout.done')
+            ->with('categories', Category::all());
     }
 }

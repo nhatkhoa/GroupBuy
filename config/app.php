@@ -147,6 +147,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         'Darryldecode\Cart\CartServiceProvider',
+        'Netshell\Paypal\PaypalServiceProvider',
 
     ],
 
@@ -199,7 +200,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Cart' => 'Darryldecode\Cart\Facades\CartFacade',
-
+        'Paypal' => 'Netshell\Paypal\Facades\Paypal',
     ],
 
 ];
