@@ -1,3 +1,5 @@
+Hướng dẫn: Tài khoản admin : admin/admin -> đăng nhập tại trang chủ
+------------------------
 Chức năng:
 
 1. Danh mục sản phẩm 2 cấp
@@ -13,4 +15,5 @@ Chức năng:
 -----------------
 Host: https://k12110323.herokuapp.com
 Github: https://github.com/nhatkhoa/GroupBuy
+Git Heroku: git@heroku.com:k12110323.git
 
