@@ -138,7 +138,7 @@ class MainController extends Controller
     public function postCheckout(Request $request){
         \DB::beginTransaction();
         $customer = Customer::create($request->all());
-        $order = $customer->orders()->create(['quantity' => \Cart::getTotalQuantity(), 'total' => \Cart::getTotal()]);
+        $order = $customer->orders()->create(['quantity' => \Cart::getTotalQuantity(), 'total' => \Cart::getTotal(), 'shipped' => false]);
         foreach (\Cart::getContent() as $cart) {
             $order->details()->create([
                 'deal_id' => $cart->id,
