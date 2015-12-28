@@ -72,6 +72,7 @@
                             </div>
 
                             <input type="submit" class="btn btn-primary" value="Xác Nhận">
+                            <input type="hidden" name="shipped" value="false"/>
                         </form>
                     </div>
                     <div class="col-md-5 col-md-offset-1">
