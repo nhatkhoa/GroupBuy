@@ -44,6 +44,11 @@ Route::group(['namespace' => 'Frontend'], function(){
     Route::get('/thanh-toan', 'MainController@getCheckout');
     Route::post('/thanh-toan', 'MainController@postCheckout');
 
+    Route::get('/thanh-toan-paypal', ['uses' => 'PaymentController@getCheckout', 'as' => 'paypal']);
+    Route::post('/thanh-toan-paypal', 'PaymentController@postCheckout');
+    Route::get('/thanh-toan-paypal-done', ['uses' => 'PaymentController@getDone', 'as' => 'paypal-done']);
+
+
 
 });
 

@@ -43,8 +43,8 @@
                 <p class="mb20"><a href="#">Đăng Nhập</a> hoặc <a href="#">Đăng Ký</a> để nhanh chóng hơn.</p>
                 <div class="row">
                     <div class="col-md-6">
-                        <h3>Giao hàng & Nhận tiền</h3>
-                        <form action="/thanh-toan" method="POST">
+                        <h3>Thanh toán qua Paypal</h3>
+                        <form action="/thanh-toan-paypal" method="POST">
                             <!-- <legend>Personal Information</legend> -->
                             <div class="form-group">
                                 <label for="">Họ tên đầy đủ</label>
@@ -73,13 +73,6 @@
 
                             <input type="submit" class="btn btn-primary" value="Xác Nhận">
                             <input type="hidden" name="shipped" value="false"/>
-                        </form>
-                    </div>
-                    <div class="col-md-5 col-md-offset-1">
-                        <h3>Thanh toán qua Paypal</h3>
-                        <p>Chú ý: Bạn sẽ được chuyển qua website của Paypal để tiếp tục quá trình thanh toán.</p>
-                        <form action="/thanh-toan-paypal" method="POST">
-                            <button type="submit" class="btn btn-primary">Chấp Nhận Thanh Toán Paypal</button>
                         </form>
                     </div>
                 </div>

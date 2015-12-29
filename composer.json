@@ -16,7 +16,9 @@
     "jenssegers/date": "^3.0",
     "intervention/image": "^2.3",
     "darryldecode/cart": "dev-master",
-    "netshell/paypal": "dev-master"
+    "netshell/paypal": "dev-master",
+    "danielme85/laravel-cconverter": "dev-master",
+    "cartalyst/converter": "2.0.*"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
@@ -24,6 +26,12 @@
     "phpunit/phpunit": "~4.0",
     "phpspec/phpspec": "~2.1"
   },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.cartalyst.com"
+    }
+  ],
   "autoload": {
     "classmap": [
       "database"
