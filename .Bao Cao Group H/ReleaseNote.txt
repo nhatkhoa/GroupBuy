@@ -11,6 +11,9 @@ Chức năng:
 7. Quản lý danh mục : https://k12110323.herokuapp.com/admin/categories
 8. Quản lý sản phâm (deal) : https://k12110323.herokuapp.com/admin/deals
 9. Quản lý nhà phân phối: https://k12110323.herokuapp.com/admin/partners
+10. Giỏ hàng
+11. Thanh toán paypal
+12. Thanh toán giao hàng
 
 -----------------
 Host: https://k12110323.herokuapp.com
